@@ -20,20 +20,6 @@
 ;; Sökningar är "case sensitive"
 (setq-default case-fold-search nil)
 
-;; Email settings
-(setq user-mail-address "rasmus.m.mattsson@gmail.com"
-      user-full-name "Rasmus Mattsson")
-
-(setq gnus-select-method
-      '(nnimap "gmail"
-	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-	       (nnimap-server-port "imaps")
-	       (nnimap-stream ssl)))
-
-(setq smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
-
 ;; Visa rad i statusfältet
 (line-number-mode 1)
 (setq column-number-mode t)
