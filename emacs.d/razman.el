@@ -20,7 +20,7 @@
 (defun raz-toggle-init-file-in-current-window ()
   (interactive)
   (unless (try-toggle-buffer-in-current-window (file-name-nondirectory user-init-file))
-    (find-file user-init-file)))
+    (find-file (file-truename user-init-file))))
 
 (defun raz-toggle-eshell-in-current-window ()
   (interactive)
