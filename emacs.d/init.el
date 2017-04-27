@@ -89,6 +89,7 @@
 
 ;; Global unmappings
 (global-unset-key (kbd "C-t"))
+(global-unset-key (kbd "C-x C-d"))
 
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'dired-find-file)
