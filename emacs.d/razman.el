@@ -55,7 +55,7 @@
 ;;////////////////////////////
 ;;/// Text from minibuffer ///
 ;;////////////////////////////
-(defun raz-insert-cpp-heading (text)
+(defun raz-skeleton-section (text)
   (interactive "sText: ")
   (let* ((middle-row (concat "/// " text " ///"))
          (middle-row-len (string-width middle-row))
@@ -69,7 +69,7 @@
 
 ;; Inserts a boilerplate program into a file.
 ;; Is there any way for emacs to add an indent instead of manually adding spaces?
-(defun raz-insert-boilerplate-cpp ()
+(defun raz-skeleton-cpp-main ()
   (interactive)
   (let* ((includes "#include <iostream>")
          (main "int main()")
@@ -88,7 +88,7 @@
            (newline)
            (insert closing-brace))))
 
-(defun raz-insert-cpp-class-boilerplate (name)
+(defun raz-skeleton-cpp-class (name)
   (interactive "sClass name: ")
   (let ((signature (concat "class " name))
         (opening-bracket "{")
