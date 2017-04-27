@@ -11,6 +11,9 @@
 
 ;; Keep 'customize' stuff in a different file
 (setq custom-file "~/.emacs.d/custom.el")
+(if (not (file-exists-p custom-file)) ; Only happens on the first startup
+    (with-temp-buffer (write-file custom-file)))
+
 (load "~/.emacs.d/custom.el")
 
 ;; Add Melpa repository
