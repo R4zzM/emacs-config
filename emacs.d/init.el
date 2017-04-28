@@ -5,6 +5,7 @@
 ;; Expected plugins:
 ;; - Magit
 ;; - Ack
+;; - Company
 
 ;; Razmans fantastic library
 (load "~/.emacs.d/razman")
@@ -57,6 +58,9 @@
 ;; All files are visited read-only
 (add-hook 'find-file-hook 'read-only-mode)
 
+;; Use company in all buffers (test)
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; C and C++ modes
 (setq c-tab-always-indent t)
 (setq-default c-basic-offset 4)
@@ -81,6 +85,11 @@
 (setq-default org-time-clocksum-format
               '(:hours "%d timmar och " :require-hours t :minutes "%02d minuter" :require-minutes t))
 
+;; Global unmappings with comments
+(global-unset-key (kbd "C-t")) ; Useless but first and foremost, it gets in the way for C-y
+(global-unset-key (kbd "C-x C-d")) ; Almost useless and gets in the way for C-x d
+(global-unset-key (kbd "C-x" C-r)) ; All buffers are opened read only. Better used for reverting.
+
 ;; Global remappings
 (global-set-key "\C-x\C-b" 'raz-buffer-menu-with-prefix-arg)
 (global-set-key "\C-x4\C-b" ' raz-buffer-menu-with-prefix-arg-other-window)
@@ -89,10 +98,8 @@
 (global-set-key (kbd "<f12>") 'raz-toggle-init-file-in-current-window)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-a") 'raz-ack-in-project-root)
-
-;; Global unmappings
-(global-unset-key (kbd "C-t"))
-(global-unset-key (kbd "C-x C-d"))
+(global-set-key (kbd "<backtab>") 'company-complete)
+(global-set-key (kbd "C-x C-r") 'revert-buffer)
 
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'dired-find-file)
