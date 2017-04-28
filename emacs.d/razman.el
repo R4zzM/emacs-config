@@ -1,10 +1,6 @@
-;;; --------------------------------- ;;;
-;;; Razmans fantastic support library ;;;
-;;; --------------------------------- ;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Switch to / Toggle various buffers ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Switch to / Toggle various buffers;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun try-toggle-buffer-in-current-window (name)
   "If buffer is visible in current window, show previous buffer."
@@ -50,22 +46,29 @@
   (setq current-prefix-arg '(4))
   (call-interactively 'buffer-menu-other-window))
 
-;; Reads text from the minibuffer and inserts a cpp chapter heading that looks like
-;;
-;;////////////////////////////
-;;/// Text from minibuffer ///
-;;////////////////////////////
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Text from minibuffer functions;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmacro raz-insert-line (text)
+  `(progn (insert ,text)
+          (newline)))
+
+(defun raz-concat-with-self (string times)
+  (let ((result ""))
+    (dotimes (i times result)
+      (setq result (concat result string)))))
+
 (defun raz-skeleton-section (text)
   (interactive "sText: ")
-  (let* ((middle-row (concat "/// " text " ///"))
+  (let* ((middle-row (concat comment-start text comment-start))
          (middle-row-len (string-width middle-row))
-         (upper-and-lower-row (make-string middle-row-len ?/)))
-    (progn (insert upper-and-lower-row)
-           (newline)
-           (insert middle-row)
-           (newline)
-           (insert upper-and-lower-row)
-           (newline))))
+         (upper-and-lower-row (raz-concat-with-self
+                               (substring comment-start 0 1)
+                               middle-row-len)))
+    (raz-insert-line upper-and-lower-row)
+    (raz-insert-line middle-row)
+    (raz-insert-line upper-and-lower-row)))
 
 ;; Inserts a boilerplate program into a file.
 ;; Is there any way for emacs to add an indent instead of manually adding spaces?
