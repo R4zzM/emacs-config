@@ -88,7 +88,7 @@
 ;; Global unmappings with comments
 (global-unset-key (kbd "C-t")) ; Useless but first and foremost, it gets in the way for C-y
 (global-unset-key (kbd "C-x C-d")) ; Almost useless and gets in the way for C-x d
-(global-unset-key (kbd "C-x" C-r)) ; All buffers are opened read only. Better used for reverting.
+(global-unset-key (kbd "C-x C-r")) ; All buffers are opened read only. Better used for reverting.
 
 ;; Global remappings
 (global-set-key "\C-x\C-b" 'raz-buffer-menu-with-prefix-arg)
